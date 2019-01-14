@@ -40,5 +40,19 @@ public class TryCatchChange {
 			 throw ex;  
 		}
 	}
+	
+	static class AutoCloseResource implements AutoCloseable {
+
+		@Override
+		public void close() {
+			System.out.println("auto close");
+		}
+	}
+	
+	public static void main(String[] args) {
+		try (AutoCloseResource resource = new AutoCloseResource();) {
+			System.out.println(resource.toString());
+		} 
+	}
 
 }
